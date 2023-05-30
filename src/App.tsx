@@ -7,7 +7,10 @@ import NotFoundPage from "./Screens/NotFoundPage";
 import ProfessorPage from "./Screens/ProfessorPage";
 import StudentPage from "./Screens/StudentPage";
 import ProfilePage from "./Screens/ProfilePage";
+import AccountPage from "./Screens/Account";
 import { AuthenticationGuard } from "./Auth/AuthenticationGuard";
+import CircularLoader from "./Components/CircularLoader";
+import "./App.scss";
 
 const App = () => {
   const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
@@ -29,29 +32,35 @@ const App = () => {
   return (
     <>
       <NavBar />
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <Routes>
-          <Route
-            path="/"
-            element={<AuthenticationGuard component={LandingPage} />}
-          />
-          <Route
-            path="/professor/:professorId/courses"
-            element={<AuthenticationGuard component={ProfessorPage} />}
-          />
-          <Route
-            path="/professor/:professorId/student/:studentId"
-            element={<AuthenticationGuard component={StudentPage} />}
-          />
-          <Route
-            path="/profile"
-            element={<AuthenticationGuard component={ProfilePage} />}
-          />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      )}
+      <div className="app-body">
+        {isLoading ? (
+          <CircularLoader />
+        ) : (
+          <Routes>
+            <Route
+              path="/"
+              element={<AuthenticationGuard component={LandingPage} />}
+            />
+            <Route
+              path="/account"
+              element={<AuthenticationGuard component={AccountPage} />}
+            />
+            <Route
+              path="/professor/:professorId/courses"
+              element={<AuthenticationGuard component={ProfessorPage} />}
+            />
+            <Route
+              path="/professor/:professorId/student/:studentId"
+              element={<AuthenticationGuard component={StudentPage} />}
+            />
+            <Route
+              path="/profile"
+              element={<AuthenticationGuard component={ProfilePage} />}
+            />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        )}
+      </div>
     </>
   );
 };
