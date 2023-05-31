@@ -10,6 +10,7 @@ import ProfilePage from "./Screens/ProfilePage";
 import AccountPage from "./Screens/Account";
 import { AuthenticationGuard } from "./Auth/AuthenticationGuard";
 import CircularLoader from "./Components/CircularLoader";
+import Footer from "./Components/Footer";
 import "./App.scss";
 
 const App = () => {
@@ -61,6 +62,7 @@ const App = () => {
           </Routes>
         )}
       </div>
+      <Footer />
     </>
   );
 };
