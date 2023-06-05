@@ -17,7 +17,7 @@ const App = () => {
   const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
 
   useEffect(() => {
-    const checkAuth = async () => {
+    const handleAuth = async () => {
       if (!isAuthenticated && !isLoading) {
         await loginWithRedirect({
           appState: {
@@ -27,7 +27,7 @@ const App = () => {
       }
     };
 
-    checkAuth();
+    handleAuth();
   }, [isAuthenticated, isLoading, loginWithRedirect]);
 
   return (
