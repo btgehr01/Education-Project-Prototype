@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Auth0ProviderWithNavigate } from "./Auth/auth0-provider-with-navigate";
+import { RoleProvider } from "./Auth/RoleContext";
 import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
@@ -13,7 +14,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Auth0ProviderWithNavigate>
-        <App />
+        <RoleProvider>
+          <App />
+        </RoleProvider>
       </Auth0ProviderWithNavigate>
     </BrowserRouter>
   </React.StrictMode>
