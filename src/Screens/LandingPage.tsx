@@ -1,6 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { RoleContext } from "../Auth/RoleContext";
 import RubricScreen from "./RubricScreen";
+import StudentScreen from "./StudentsScreen";
+import AssessmentsScreen from "./AssessmentsScreen";
+import PersonnelScreen from "./PersonnelScreen";
 
 const LandingPage = () => {
   const { userRoles } = useContext(RoleContext);
@@ -16,10 +19,10 @@ const LandingPage = () => {
           justifyContent: "space-between",
         }}
       >
+        <PersonnelScreen />
+        <StudentScreen />
         <RubricScreen />
-        <RubricScreen />
-        <RubricScreen />
-        <RubricScreen />
+        <AssessmentsScreen />
       </div>
     </div>
   );

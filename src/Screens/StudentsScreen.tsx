@@ -1,11 +1,11 @@
 import * as React from "react";
 import DataTable from "../Components/DataTable";
-import { rubricType } from "../Helpers/RubricHelper";
-import { fetchAllRubrics } from "../Helpers/RubricHelper";
+import { studentType } from "../Helpers/StudentHelper";
+import { fetchAllStudents } from "../Helpers/StudentHelper";
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function RubricScreen() {
-  const [rubrics, setRubrics] = React.useState<rubricType[]>([
+export default function StudentScreen() {
+  const [students, setStudents] = React.useState<studentType[]>([
     {
       id: 1,
       value: "update",
@@ -29,8 +29,8 @@ export default function RubricScreen() {
         //   },
         // });
         // console.log(token);
-        // const rubrics = await fetchAllRubrics(token);
-        // setRubrics(rubrics);
+        // const students = await fetchAllStudents(token);
+        // setStudents(students);
       } catch (e) {
         console.error(e);
       }
@@ -39,8 +39,8 @@ export default function RubricScreen() {
   }, [getAccessTokenSilently]);
   return (
     <div style={{ minWidth: "300px" }}>
-      <h1 style={{ textAlign: "center" }}>Rubrics</h1>
-      <DataTable labels={["id", "value"]} rows={rubrics} />
+      <h1 style={{ textAlign: "center" }}>Students</h1>
+      <DataTable labels={["id", "value"]} rows={students} />
     </div>
   );
 }

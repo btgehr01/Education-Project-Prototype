@@ -2,13 +2,21 @@ import axios from "axios";
 const baseURL =
   "https://t9v5v2149b.execute-api.us-east-1.amazonaws.com/develop";
 
+export type rubricType = {
+  id: number;
+  value: string;
+};
+
 export const fetchRubric = async (rubricId: string, token: string) => {
   try {
-    const response = await axios.get("https://aws-api-endpoint", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(
+      baseURL + `/getRubric?rubricId=${rubricId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     console.log(response.data);
   } catch (error) {
     console.error("Error:", error);
@@ -28,51 +36,46 @@ export const fetchAllRubrics = async (token: string) => {
   }
 };
 
-export const postData = async (rubric: any, token: string) => {
+export const postRubric = async (rubric: rubricType, token: string) => {
   try {
-    const response = await axios.post("https://your-api-endpoint", rubric, {
+    const response = await axios.post(baseURL + "/createRubric", rubric, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response.data);
+    return response.data;
   } catch (error) {
     console.error("Error:", error);
   }
 };
 
-export const updateData = async (
-  rubricId: string,
-  updatedRubric: any,
+export const updateRubric = async (
+  updatedRubric: rubricType,
   token: string
 ) => {
   try {
-    const response = await axios.put(
-      `https://your-api-endpoint/${rubricId}`,
-      updatedRubric,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    console.log(response.data);
+    const response = await axios.put(baseURL + `/updateRubric`, updatedRubric, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
   } catch (error) {
     console.error("Error:", error);
   }
 };
 
-export const deleteData = async (rubricId: string, token: string) => {
+export const deleteRubric = async (rubricId: string, token: string) => {
   try {
     const response = await axios.delete(
-      `https://your-api-endpoint/${rubricId}`,
+      baseURL + `/deleteRubric?rubicId=${rubricId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
     );
-    console.log(response.data);
+    return response.data;
   } catch (error) {
     console.error("Error:", error);
   }
