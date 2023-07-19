@@ -1,4 +1,6 @@
 import axios from "axios";
+const baseURL =
+  "https://t9v5v2149b.execute-api.us-east-1.amazonaws.com/develop";
 
 export const fetchRubric = async (rubricId: string, token: string) => {
   try {
@@ -15,12 +17,12 @@ export const fetchRubric = async (rubricId: string, token: string) => {
 
 export const fetchAllRubrics = async (token: string) => {
   try {
-    const response = await axios.get("https://aws-api-endpoint", {
+    const response = await axios.get(baseURL + "/getRubrics", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response.data);
+    return response.data;
   } catch (error) {
     console.error("Error:", error);
   }

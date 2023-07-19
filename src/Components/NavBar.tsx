@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { RoleContext } from "../Auth/RoleContext";
 
 const pages = ["Classes", "Assignments", "Surveys"];
 const settings = ["Account", "Logout"];
@@ -21,7 +22,9 @@ const appTitle = "EDUCATION PROJECT";
 
 function NavBar() {
   const navigate = useNavigate();
-  const { logout } = useAuth0();
+  const { setUserRoles } = React.useContext(RoleContext);
+  const { userRoles } = React.useContext(RoleContext);
+  const { logout, getIdTokenClaims, isLoading, isAuthenticated } = useAuth0();
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -29,6 +32,24 @@ function NavBar() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+
+  React.useEffect(() => {
+    const getUserRoles = async () => {
+      if (isAuthenticated && !isLoading) {
+        try {
+          const idTokenClaims = await getIdTokenClaims();
+          if (idTokenClaims) {
+            const userRoles = idTokenClaims["https://wallaceproject.com/roles"];
+            setUserRoles(userRoles);
+          }
+        } catch (error) {
+          console.log("Error retrieving ID token claims:", error);
+        }
+      }
+    };
+
+    getUserRoles();
+  }, [isAuthenticated, isLoading, getIdTokenClaims, setUserRoles]);
 
   const handleLogout = () => {
     logout({
@@ -180,7 +201,7 @@ function NavBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title={"[" + userRoles.join(" : ") + "]"}>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar src="/broken-image.jpg" />
               </IconButton>
