@@ -5,20 +5,7 @@ import { fetchAllAssessments } from "../Helpers/AssessmentHelper";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function AssessmentsScreen() {
-  const [assessments, setAssessments] = React.useState<assessmentType[]>([
-    {
-      id: 1,
-      value: "update",
-    },
-    {
-      id: 3,
-      value: "Jeff",
-    },
-    {
-      id: 4,
-      value: "Sam",
-    },
-  ]);
+  const [assessments, setAssessments] = React.useState<assessmentType[]>([]);
   const { getAccessTokenSilently } = useAuth0();
   React.useEffect(() => {
     const fetchRubrics = async () => {
@@ -40,7 +27,18 @@ export default function AssessmentsScreen() {
   return (
     <div style={{ minWidth: "300px" }}>
       <h1 style={{ textAlign: "center" }}>Assessments</h1>
-      <DataTable labels={["id", "value"]} rows={assessments} />
+      <DataTable
+        labels={[
+          "StudentID",
+          "RubricName",
+          "Facilitator",
+          "Date",
+          "Points",
+          "Comments",
+          "Criterion",
+        ]}
+        rows={assessments !== undefined ? assessments : []}
+      />
     </div>
   );
 }

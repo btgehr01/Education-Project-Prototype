@@ -5,20 +5,7 @@ import { fetchAllRubrics } from "../Helpers/RubricHelper";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function RubricScreen() {
-  const [rubrics, setRubrics] = React.useState<rubricType[]>([
-    {
-      id: 1,
-      value: "update",
-    },
-    {
-      id: 3,
-      value: "Jeff",
-    },
-    {
-      id: 4,
-      value: "Sam",
-    },
-  ]);
+  const [rubrics, setRubrics] = React.useState<rubricType[]>([]);
   const { getAccessTokenSilently } = useAuth0();
   React.useEffect(() => {
     const fetchRubrics = async () => {
@@ -40,7 +27,15 @@ export default function RubricScreen() {
   return (
     <div style={{ minWidth: "300px" }}>
       <h1 style={{ textAlign: "center" }}>Rubrics</h1>
-      <DataTable labels={["id", "value"]} rows={rubrics} />
+      <DataTable
+        labels={[
+          "RubricName",
+          "Dimension/Criterion",
+          "PossiblePoints",
+          "Criteria",
+        ]}
+        rows={rubrics}
+      />
     </div>
   );
 }

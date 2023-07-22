@@ -15,7 +15,7 @@ const LandingPage = () => {
       <div
         style={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: "column",
           justifyContent: "space-between",
         }}
       >

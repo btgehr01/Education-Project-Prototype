@@ -1,10 +1,12 @@
 import axios from "axios";
 export type personnelType = {
-  id: number;
-  value: string;
+  FirstName: string;
+  LastName: string;
+  Title: string;
+  Type: "Admin" | "Advisor/Evaluator";
 };
 const baseURL =
-  "https://q4h7rj2itl.execute-api.us-east-1.amazonaws.com/developp";
+  "https://q4h7rj2itl.execute-api.us-east-1.amazonaws.com/develop";
 
 export const fetchAllPersonnel = async (token: string) => {
   try {

@@ -5,20 +5,7 @@ import { fetchAllStudents } from "../Helpers/StudentHelper";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function StudentScreen() {
-  const [students, setStudents] = React.useState<studentType[]>([
-    {
-      id: 1,
-      value: "update",
-    },
-    {
-      id: 3,
-      value: "Jeff",
-    },
-    {
-      id: 4,
-      value: "Sam",
-    },
-  ]);
+  const [students, setStudents] = React.useState<studentType[]>([]);
   const { getAccessTokenSilently } = useAuth0();
   React.useEffect(() => {
     const fetchRubrics = async () => {
@@ -40,7 +27,23 @@ export default function StudentScreen() {
   return (
     <div style={{ minWidth: "300px" }}>
       <h1 style={{ textAlign: "center" }}>Students</h1>
-      <DataTable labels={["id", "value"]} rows={students} />
+      <DataTable
+        labels={[
+          "studentID",
+          "FirstName",
+          "LastName",
+          "NominationType",
+          "DistrictWorkEmail",
+          "PersonalEmail",
+          "NominatorFirstName",
+          "NominatorLastName",
+          "NominatorWorkEmail",
+          "SchoolDistrict",
+          "SchoolName",
+          "Cohort",
+        ]}
+        rows={students !== undefined ? students : []}
+      />
     </div>
   );
 }

@@ -1,7 +1,17 @@
 import axios from "axios";
 export type studentType = {
-  id: number;
-  value: string;
+  studentID: number;
+  FirstName: string;
+  LastName: string;
+  NominationType: string;
+  DistrictWorkEmail: string;
+  PersonalEmail: string;
+  NominatorFirstName: string;
+  NominatorLastName: string;
+  NominatorWorkEmail: string;
+  SchoolDistrict: string;
+  SchoolName: string;
+  Cohort: string;
 };
 const baseURL =
   "https://n1p2q59dzd.execute-api.us-east-1.amazonaws.com/develop";

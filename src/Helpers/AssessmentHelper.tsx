@@ -1,7 +1,12 @@
 import axios from "axios";
 export type assessmentType = {
-  id: number;
-  value: string;
+  StudentID: number;
+  RubricName: string;
+  Facilitator: string;
+  Date: string;
+  Points: number;
+  Comments: string;
+  Criterion: string;
 };
 const baseURL =
   "https://fdfresyb0a.execute-api.us-east-1.amazonaws.com/develop";

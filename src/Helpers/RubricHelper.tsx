@@ -3,8 +3,10 @@ const baseURL =
   "https://t9v5v2149b.execute-api.us-east-1.amazonaws.com/develop";
 
 export type rubricType = {
-  id: number;
-  value: string;
+  RubricName: string;
+  "Dimension/Criterion": string;
+  PossiblePoints: number;
+  Criteria: string;
 };
 
 export const fetchRubric = async (rubricId: string, token: string) => {
