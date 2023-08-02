@@ -22,7 +22,6 @@ const LandingPage = () => {
         <PersonnelScreen />
         <StudentScreen />
         <RubricScreen />
-        <AssessmentsScreen />
       </div>
     </div>
   );
