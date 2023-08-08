@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { RoleContext } from "../Auth/RoleContext";
 import RubricScreen from "./RubricScreen";
 import StudentScreen from "./StudentsScreen";
-import AssessmentsScreen from "./AssessmentsScreen";
 import PersonnelScreen from "./PersonnelScreen";
 
 const LandingPage = () => {
@@ -11,12 +10,15 @@ const LandingPage = () => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <h1 style={{ textAlign: "center" }}>Database Dashboard</h1>
+      <h1 style={{ textAlign: "center" }}>Database Tables</h1>
       <div
         style={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          border: "2px solid #000",
+          borderRadius: "10px",
+          padding: "30px",
         }}
       >
         <PersonnelScreen />
