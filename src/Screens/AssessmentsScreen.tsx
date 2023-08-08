@@ -927,17 +927,10 @@ export default function AssessmentsScreen() {
     fetchRubrics();
   }, [getAccessTokenSilently]);
 
-  const studentIds: number[] = Array.from(
-    new Set(assessments.map((item) => item.StudentID))
-  );
-
-  const facilitators: string[] = Array.from(
-    new Set(assessments.map((item) => item.Facilitator))
-  );
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>Assessments GUI</h1>
-      <AssessmentsGUI studentIds={studentIds} facilitators={facilitators} />
+      <AssessmentsGUI assessments={assessments} />
       <h1 style={{ textAlign: "center" }}>Assessments Database Table</h1>
       <DataTable
         labels={[
