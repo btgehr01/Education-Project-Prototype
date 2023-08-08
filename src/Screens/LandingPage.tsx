@@ -18,7 +18,7 @@ const LandingPage = () => {
           justifyContent: "space-between",
           border: "2px solid #000",
           borderRadius: "10px",
-          padding: "30px",
+          padding: "30px 30px 100px 30px",
         }}
       >
         <PersonnelScreen />

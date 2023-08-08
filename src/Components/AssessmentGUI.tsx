@@ -10,6 +10,7 @@ import {
   InputLabel,
   Button,
 } from "@mui/material";
+import BarPlot from "./BarChart";
 import LineGraph from "./LineChart";
 import React from "react";
 import { assessmentType } from "../Helpers/AssessmentHelper";
@@ -111,6 +112,16 @@ const AssessmentsGUI = ({ assessments }: props) => {
               />
             }
             label="Average Score"
+          />
+          <FormControlLabel
+            value="deviation"
+            control={
+              <Radio
+                checked={plotOption === "deviation"}
+                onChange={handlePlottingToggleChange}
+              />
+            }
+            label="Student Growth"
           />
         </RadioGroup>
       );
@@ -233,6 +244,17 @@ const AssessmentsGUI = ({ assessments }: props) => {
     return rubricScores;
   };
 
+  const getStudentsGrowth = () => {
+    const growthArray = Object.values(rubricAverages).map((average, i) => {
+      if (i === 0) {
+        return 0;
+      } else {
+        return average - Object.values(rubricAverages)[i - 1];
+      }
+    });
+    return growthArray;
+  };
+
   const getEvaluatorScores = (evaluatorName: string) => {
     const evaluatorScores: {
       [rubricName: string]: { totalPoints: number; count: number };
@@ -267,6 +289,14 @@ const AssessmentsGUI = ({ assessments }: props) => {
               <LineGraph
                 data1={Object.values(rubricAverages)}
                 label1="Average Scores"
+                xLabels={Object.keys(rubricAverages)}
+              />
+            );
+          } else if (plotOption === "deviation") {
+            return (
+              <BarPlot
+                data1={getStudentsGrowth()}
+                label1="Score Growth"
                 xLabels={Object.keys(rubricAverages)}
               />
             );
