@@ -31,7 +31,6 @@ const AssessmentsGUI = ({ assessments }: props) => {
     new Set(assessments.map((item) => item.Facilitator))
   );
 
-  // Calculate average scores for each rubric name
   const rubricScores: {
     [rubricName: string]: { totalPoints: number; count: number };
   } = {};
@@ -81,7 +80,7 @@ const AssessmentsGUI = ({ assessments }: props) => {
       case "score":
         setPlotOption("scores");
         break;
-      case "growth":
+      case "deviation":
         setPlotOption("deviation");
         break;
     }
@@ -156,7 +155,7 @@ const AssessmentsGUI = ({ assessments }: props) => {
               label="Assessment Scores"
             />
             <FormControlLabel
-              value="growth"
+              value="deviation"
               control={
                 <Radio
                   checked={plotOption === "deviation"}
@@ -209,7 +208,7 @@ const AssessmentsGUI = ({ assessments }: props) => {
               label="Assessment Scores"
             />
             <FormControlLabel
-              value="growth"
+              value="deviation"
               control={
                 <Radio
                   checked={plotOption === "deviation"}
