@@ -10,14 +10,13 @@ export default function RubricScreen() {
   React.useEffect(() => {
     const fetchRubrics = async () => {
       try {
-        // const token = await getAccessTokenSilently({
-        //   authorizationParams: {
-        //     audience: `https://auth0-jwt-authorizer`,
-        //   },
-        // });
-        // console.log(token);
-        // const rubrics = await fetchAllRubrics(token);
-        // setRubrics(rubrics);
+        const token = await getAccessTokenSilently({
+          authorizationParams: {
+            audience: `https://auth0-jwt-authorizer`,
+          },
+        });
+        const rubrics = await fetchAllRubrics(token);
+        setRubrics(rubrics);
       } catch (e) {
         console.error(e);
       }

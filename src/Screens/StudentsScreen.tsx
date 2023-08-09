@@ -10,14 +10,13 @@ export default function StudentScreen() {
   React.useEffect(() => {
     const fetchRubrics = async () => {
       try {
-        // const token = await getAccessTokenSilently({
-        //   authorizationParams: {
-        //     audience: `https://auth0-jwt-authorizer`,
-        //   },
-        // });
-        // console.log(token);
-        // const students = await fetchAllStudents(token);
-        // setStudents(students);
+        const token = await getAccessTokenSilently({
+          authorizationParams: {
+            audience: `https://auth0-jwt-authorizer`,
+          },
+        });
+        const students = await fetchAllStudents(token);
+        setStudents(students);
       } catch (e) {
         console.error(e);
       }

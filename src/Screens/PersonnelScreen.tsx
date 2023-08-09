@@ -9,18 +9,17 @@ export default function PersonnelScreen() {
   const { getAccessTokenSilently } = useAuth0();
   React.useEffect(() => {
     const fetchPersonnel = async () => {
-      //   try {
-      //     const token = await getAccessTokenSilently({
-      //       authorizationParams: {
-      //         audience: `https://auth0-jwt-authorizer`,
-      //       },
-      //     });
-      //     console.log(token);
-      //     const personnel = await fetchAllPersonnel(token);
-      //     setPersonnel(personnel);
-      //   } catch (e) {
-      //     console.error(e);
-      //   }
+      try {
+        const token = await getAccessTokenSilently({
+          authorizationParams: {
+            audience: `https://auth0-jwt-authorizer`,
+          },
+        });
+        const personnel = await fetchAllPersonnel(token);
+        setPersonnel(personnel);
+      } catch (e) {
+        console.error(e);
+      }
     };
     fetchPersonnel();
   }, [getAccessTokenSilently]);
