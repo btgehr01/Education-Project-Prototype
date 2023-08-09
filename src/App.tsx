@@ -12,6 +12,7 @@ import { AuthenticationGuard } from "./Auth/AuthenticationGuard";
 import CircularLoader from "./Components/CircularLoader";
 import Footer from "./Components/Footer";
 import "./App.scss";
+import AssessmentsScreen from "./Screens/AssessmentsScreen";
 
 const App = () => {
   const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
@@ -57,6 +58,10 @@ const App = () => {
             <Route
               path="/profile"
               element={<AuthenticationGuard component={ProfilePage} />}
+            />
+            <Route
+              path="/Assignments"
+              element={<AuthenticationGuard component={AssessmentsScreen} />}
             />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

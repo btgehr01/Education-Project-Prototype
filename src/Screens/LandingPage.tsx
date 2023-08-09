@@ -1,32 +1,32 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { RoleContext } from "../Auth/RoleContext";
-import { useAuth0 } from "@auth0/auth0-react";
+import RubricScreen from "./RubricScreen";
+import StudentScreen from "./StudentsScreen";
+import PersonnelScreen from "./PersonnelScreen";
 
 const LandingPage = () => {
-  const { setUserRoles } = useContext(RoleContext);
   const { userRoles } = useContext(RoleContext);
   console.log("set UserRoles", userRoles);
-  const { getIdTokenClaims, isLoading, isAuthenticated } = useAuth0();
 
-  useEffect(() => {
-    const getUserRoles = async () => {
-      if (isAuthenticated && !isLoading) {
-        try {
-          const idTokenClaims = await getIdTokenClaims();
-          if (idTokenClaims) {
-            const userRoles = idTokenClaims["https://wallaceproject.com/roles"];
-            setUserRoles(userRoles);
-          }
-        } catch (error) {
-          console.log("Error retrieving ID token claims:", error);
-        }
-      }
-    };
-
-    getUserRoles();
-  }, [isAuthenticated, isLoading, getIdTokenClaims, setUserRoles]);
-
-  return <div>Landing Page</div>;
+  return (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <h1 style={{ textAlign: "center" }}>Database Tables</h1>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          border: "2px solid #000",
+          borderRadius: "10px",
+          padding: "30px 30px 100px 30px",
+        }}
+      >
+        <PersonnelScreen />
+        <StudentScreen />
+        <RubricScreen />
+      </div>
+    </div>
+  );
 };
 
 export default LandingPage;
